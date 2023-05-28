@@ -11,13 +11,13 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
-app.get("/test.mp4", function (req, res) {
+app.get("/videofile.mp4", function (req, res) {
   const range = req.headers.range;
   if (!range) {
     res.status(400).send("Requires Range header");
   }
-  const videoPath = "/test.mp4";
-  const videoSize = fs.statSync("/test.mp4").size;
+  const videoPath = "/videofile.mp4";
+  const videoSize = fs.statSync("/videofile.mp4").size;
   const CHUNK_SIZE = 10 ** 6;
   const start = Number(range.replace(/\D/g, ""));
   const end = Math.min(start + CHUNK_SIZE, videoSize - 1);
